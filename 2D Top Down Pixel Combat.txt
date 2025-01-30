@@ -1,0 +1,94 @@
+2D Top Down Pixel Combat
+
+8. 
+Input System
+Time.fixedDeltaTime
+
+9.
+Preset
+
+10.
+Animator/Animatiom
+
+11.
+Capsule Collider 2D/URP/Renderer2D/Pivot
+
+13.
+Enemy State Machine
+
+14.
+Sword Animation with += _ =>
+
+15.
+GetComponentInParent<>();
+Quaternion.Euler
+
+16.
+SlashAnimPrefab
+
+17.
+Polygon Collider 2D
+
+18.
+
+
+19.
+ForceMode2D.Impulse
+Coroutines
+Singleton
+
+20.
+
+21.
+Particle System
+Pick a Color from the screen 
+
+22.
+StartCoroutine
+
+23.
+Trail Renderer
+
+24.
+Format code, ternary operator
+
+26.
+Cinemachine
+
+27.
+Tilemap
+Tilemap Renderer
+Tilemap Collider 2D
+Composite Collider 2D
+
+Issue: Screen tearing issue => Sprite atlas(Make sure that's our camera and our computer is refraning from having those screen terrors)
+
+Screen resolution size
+
+28.
+Rule Tiles
+
+29.
+Animated Tiles
+
+30.
+Sprite Transparency
+Mathf.Lerp
+Tilemap Collider 2D
+
+31.
+Parallax(Add a subtle parallax effect into canopy layer)
+
+32.
+Destroy game object
+Prefab variant(create a variant off of the original base Death VFX prefab)
+For ex: 
+IF YOU HAVE 1000 or 10000 or 100000 or much than that, Or you have one dozen difference destroy VFX prefabs for different enemies and destructible objects. BUT ALL YOU NEEDED to change one core property of that base particle effect, you can just change the base death prefab and it will change all the variants 
+
+34. 
+Seconde Scene
+
+TIP:
+sử dung switch case và toán tử 3 ngôi để code ngắn
+Tại sao khi dùng if else và nếu if đúng thì điều kiện đầu tiên lại chạy (bool result = value < 0)
+sử dụng LinQ trong C#
