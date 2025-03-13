@@ -77,18 +77,272 @@ Mathf.Lerp
 Tilemap Collider 2D
 
 31.
-Parallax(Add a subtle parallax effect into canopy layer)
+Parallax: private Vector2 travel => (Vector2)cam.transform.position - startPos;
 
 32.
-Destroy game object
-Prefab variant(create a variant off of the original base Death VFX prefab)
-For ex: 
-IF YOU HAVE 1000 or 10000 or 100000 or much than that, Or you have one dozen difference destroy VFX prefabs for different enemies and destructible objects. BUT ALL YOU NEEDED to change one core property of that base particle effect, you can just change the base death prefab and it will change all the variants 
+Destroy Game Object
 
-34. 
-Seconde Scene
+Prefab Variant: we will have a variant off of the original base Death VFX prefab 
+
+=> The problem is IF You have 1000, 10000, 100000 or much than than and different VFX prefabs for different enemies and destructible objects, BUT all you needed to change 1 core property of that base particle effect, you can just change base death prefab and it will change all the variants
+
+34.
+Create a second scene
+
+35.
+Generetic Singleton class
+
+
+36.
+Scene Manager
+
+37.
+Camera Controller
+
+38.
+UI Canvas - Coroutine không thể chạy nếu như vật thể gọi nó hoặc sở hữu nó bị destroy :V
+
+39.
+Portal Visual Effect
+
+41.
+Processing Basics
+Create Global Volume Game Object and attach Volume Component Add Override => Vignette
+If having issue => In setting folder => Check Universal RP => Check Renderer 2D. If not setup => Edit => Project Setting => Graphics => Check Scriptable Renderer Pipeline Settings <=> Attach URP
+
+42. 
+2D Lightning
+In Light 2D: In Blending, Overlap Operation <=> Alpha blending will mixed two lights components
+
+43.
+Random Idle Animation => Using Animation state Info
+
+44.
+Bloom => Using Shader Graph
+
+45. Torchs, Twinkle Partical System
+
+47. UI Setup
+
+48. Active Slot
+
+49. IWeapon
+Interface
+Scriptable Object
+
+50. Scriptable Object
+
+51. Instantiating Weapons 1
+
+52. Instantiating Weapons 2
+
+53. Bow and Staff
+
+54. Weapon Cooldown Prep
+
+55. Bow and Arrow
+
+56. Arrow
+
+57. Staff
+
+58. Laser
+
+59. Inventory Section Cleanup
+
+61. Player Health && Knockback
+OnCollisionStay2D
+
+62. Enemies Galore
+
+63. Bullet
+
+64. IEnemy Interface & State Control
+The arrow are not destroy when colliding with the Foreground in scene 2
+arrow is not destroyed after fixing If-else in OnTriggerEnter2D function.
+When I return to scene 1, the arrow sometimes shoots through the ForeGround
+
+65. Shooter Burst
+
+Bullet Move Speed: 6
+Burst Count: 5
+Time Between Bursts: 0.3
+Rest Time: 0.5
+
+
+66. Cone Of Influence ----- MATH ------ SHOULD WATCH REPLAY
+Mathf.Sin
+Mathf.Cos
+
+1
+Bullet Move Speed: 6
+Burst Count: 5
+Projectile Per Bursts: 6
+Angle Spread: 167
+Starting Distance: 0.1
+Time Between Bursts: 0.3
+Rest Time: 0.5
+
+
+2
+Bullet Move Speed: 6
+Burst Count: 5
+Projectile Per Bursts: 20
+Angle Spread: 107
+Starting Distance: 0.1
+Time Between Bursts: 1.5
+Rest Time: 0.5
+
+
+3
+Bullet Move Speed: 6
+Burst Count: 5
+Projectile Per Bursts: 10
+Angle Spread: 44
+Starting Distance: 0.1
+Time Between Bursts: 1.5
+Rest Time: 0.5
+
+
+4
+Bullet Move Speed: 12
+Burst Count: 8
+Projectile Per Bursts: 40
+Angle Spread: 359
+Starting Distance: 0.1
+Time Between Bursts: 0.3
+Rest Time: 0.5
 
 TIP:
 sử dung switch case và toán tử 3 ngôi để code ngắn
 Tại sao khi dùng if else và nếu if đúng thì điều kiện đầu tiên lại chạy (bool result = value < 0)
 sử dụng LinQ trong C#
+
+
+67. Oscillate & Stagger
+
+68. OnValidate & Editor Tooltips
+
+69. Grape Setup
+
+70. Animation Curves
+
+Animation Curve
+Evaluate
+Vector2
+Vector3
+startPosition
+endPosition
+
+Error CS104: 
+
+71. Grape Splatter
+
+GetComponent<CapsuleCollider2D>().enabled = false;
+Invoke
+
+72. Screen Shake
+Cinemachine Impulse Source
+Noise Setting
+
+74. Pick up
+
+Tim.DeltaTime in FixedUpdate() ?????? 
+
+Unity gọi FixedUpdate() theo tần suất cố định, không phụ thuộc vào FPS.
+Nếu FPS cao hơn tốc độ FixedUpdate, Unity có thể gọi FixedUpdate() nhiều lần trong một frame.
+Nếu FPS thấp hơn tốc độ FixedUpdate, Unity có thể bỏ qua một số lần gọi Update().
+
+Time.deltaTime:
+- Thời gian trôi qua giữa hai khung hình liên tiếp (frame-to-frame).
+- Thường được sử dụng trong Update(), vì khung hình có thể thay đổi không đồng nhất (dựa trên FPS).
+- Phụ thuộc vào FPS, nghĩa là giá trị này có thể thay đổi liên tục.
+
+Time.fixedDeltaTime:
+- Thời gian trôi qua giữa hai lần gọi FixedUpdate liên tiếp.
+- Luôn cố định (mặc định là 0.02s, tương đương với 50 lần/giây).
+- Được sử dụng trong FixedUpdate(), vì Unity gọi FixedUpdate() theo một khoảng thời gian cố định, bất kể FPS là bao nhiêu.
+
+Time.fixedDeltaTime trong FixedUpdate() <=>
+
+A. Độ chính xác trong tính toán vật lý
+FixedUpdate() được thiết kế để xử lý cơ chế vật lý trong Unity (bao gồm lực, vận tốc, va chạm, v.v.).
+Unity gọi FixedUpdate() theo khoảng thời gian cố định (dựa trên Time.fixedDeltaTime).
+Nếu bạn sử dụng Time.deltaTime trong FixedUpdate(), các giá trị vật lý có thể không chính xác, đặc biệt khi FPS không ổn định hoặc bị giới hạn.
+
+B. Tránh phụ thuộc vào FPS
+Time.deltaTime thay đổi dựa trên FPS, trong khi vật lý (Physics) luôn hoạt động dựa trên tần suất cố định của FixedUpdate().
+Sử dụng Time.deltaTime trong FixedUpdate() có thể dẫn đến các lỗi tính toán khi FPS thay đổi.
+
+VD = ChatGPT:
+
+Dùng Time.deltaTime trong FixedUpdate()
+private void FixedUpdate() {
+    rb.velocity += Vector2.right * acceleration * Time.deltaTime;
+}
+Nếu FPS thay đổi (ví dụ: từ 30 FPS sang 60 FPS), giá trị Time.deltaTime cũng thay đổi.
+Dẫn đến kết quả vật lý không đồng nhất, khiến chuyển động của đối tượng phụ thuộc vào FPS.
+
+
+Dùng Time.fixedDeltaTime trong FixedUpdate()
+private void FixedUpdate() {
+    rb.velocity += Vector2.right * acceleration * Time.fixedDeltaTime;
+}
+Time.fixedDeltaTime luôn cố định (mặc định là 0.02 giây).
+Kết quả vật lý sẽ chính xác và độc lập với FPS.
+
+WHEN?
+Sử dụng Time.deltaTime trong Update():
+- Dùng khi bạn muốn xử lý các hành động liên quan đến hình ảnh (graphics), ví dụ:
+- Chuyển động không liên quan đến vật lý.
+- Hoạt ảnh hoặc hiệu ứng.
+
+Sử dụng Time.fixedDeltaTime trong FixedUpdate():
+- Dùng khi bạn muốn xử lý các hành động vật lý (physics), ví dụ:
+- Di chuyển bằng lực (forces).
+- Thay đổi vận tốc (velocity).
+- Xử lý va chạm.
+
+75. Spawn Pop Up
+
+
+76. Healt && Stamina Globe
+
+77. Player UI
+
+78. Health Slider
+
+79. Economy Manager
+
+80. Stamina
+
+81. Custom Cursor
+
+We have 2 different ways to set up a custom cursor
+
+1/ Modify operating system's cursor (Sửa đổi con trỏ của hệ điều hành => Thay đổi trực tiếp bên trong Project settings và thay đổi con trỏ tùy chỉnh)
+
+2/ Putting a game object with a SpriteRenderer into the scene, disabling default cursor, and have the spriteRenderer follow around where custom should be  (đưa 1 đối tượng trò chơi có trình kết xuất Sprite vào hiện trường, vô hiệu hóa con trỏ mặc định sau đó để trình kết xuất sprite theo dõi vị trí con trỏ)
+
+82. Town Scene 
+Polygon Collider 2D
+
+
+Trong C#
+khai báo biến không đồng nghĩa với việc khởi tạo giá trị, chỉ có những biến thuộc kiểu dữ lieu nguyên thủy(Primitive Data)
+VD:
+
+Int x = 5; //khai bao x 
+
+lỗi 1: chưa kéo Game Object vào SerializeField
+lỗi 2: Chưa khởi tạo biến
+lỗi 3: Game Object không tồn tại trong scene khi tìm Game Object
+
+Dưới đây là thứ tự gọi các phương thức chính trong Unity:
+
+Awake() – Khởi tạo các giá trị và tham chiếu.
+OnEnable() – Được gọi khi đối tượng hoặc script được kích hoạt.
+Start() – Khởi tạo logic phụ thuộc vào các đối tượng khác.
+FixedUpdate() – Xử lý logic vật lý (chạy đều đặn).
+Update() – Xử lý logic không liên quan đến vật lý (theo mỗi frame).
+LateUpdate() – Được gọi sau khi tất cả Update() đã chạy xong.
